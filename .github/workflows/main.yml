@@ -1,0 +1,1718 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+- name: ASDF Build
+  # You may pin to the exact commit or the version.
+  # uses: elgohr/asdf-build-action@42cdb1c23be8f7550a38073fe4e6a5da4f452388
+  uses: elgohr/asdf-build-action@0.3.0
+  with:
+    # The command to execute in ASDF build
+    command: 
+    # The environment to use for build
+    environment: 
+    # The version of the environment to use for build
+    version: 
+    - name: Trigger Mobile Builds with Appflow
+  # You may pin to the exact commit or the version.
+  # uses: ionic-team/appflow-build@88919e2544b7866a855fd9a97d812213bf539cd0
+  uses: ionic-team/appflow-build@v1.0.1
+  with:
+    # A token used to authenticate with the Appflow Service.
+    token: 
+    # The Appflow App ID to trigger the build for.
+    app-id: 
+    # The platform to build for (Web, iOS, Android)
+    platform: # default is Web
+    # The type of build to perform. iOS - (ad-hoc, app-store, development, enterprise) Android - (debug, release)
+    build-type: # optional
+    # The build stack to use for the build (macOS - 2020.06, Linux - 2020.06, etc.)
+    build-stack: # optional
+    # The name of the signing certificate to use for the build.
+    certificate: # optional
+    # The name of the environment to use for the build.
+    environment: # optional
+    # The name of the native config to use for the build.
+    native-config: # optional
+    # A comma seperated list of destination names to trigger a deployment to on successful completion of build.
+    destinations: # optional
+    # If the platform is Web set this to [yes|no] to control whether a web preview is created for the build.
+    web-preview: # optional, default is no
+    # The filename to use for the IPA/APK (iOS, Android) defaults to {{workflow_name}}-{{run_id}}.[apk|ipa]
+    filename: # optional
+    # If this is set if any artifacts are created (APK/IPA) they will be uploaded as the name that is specified
+    upload-artifact: # optional
+    # Set this to determine the number of days to retain the uploaded artifact [1-90](defaults to 90).
+    artifact-retention-days: # optional, default is 90
+    - name: Customizable Docker Buildx Build
+  # You may pin to the exact commit or the version.
+  # uses: zmingxie/docker_buildx@6bb5966271e5b1f99b5739024cc84567e5a89d18
+  uses: zmingxie/docker_buildx@v1.1
+  with:
+    # Tags (comma separated) to apply to the image
+    tag: # optional, default is latest
+    # Name of the image
+    imageName: 
+    # Name of the Dockerfile
+    dockerFile: # optional, default is Dockerfile
+    # Docker `--build-arg` flags (*comma separated*)
+    buildArg: # optional, default is none
+    # Indicate if the builded image should be published on Docker HUB
+    publish: # optional, default is false
+    # Platforms (comma separated) that should be used to build the image
+    platform: # optional, default is linux/amd64,linux/arm64,linux/arm/v7
+    # User that will publish the image, if indicated
+    dockerHubUser: # optional
+    # Password of the dockerHubUser
+    dockerHubPassword: # optional
+    - name: Intermediate build.
+  # You may pin to the exact commit or the version.
+  # uses: ivanklee86/python_pipenv_action@5b420560d3d30aedc535b604c59add1888da39f2
+  uses: ivanklee86/python_pipenv_action@v0.0.1
+  - name: Jekyll Build
+  # You may pin to the exact commit or the version.
+  # uses: kshehadeh/jekyll-s3-action@220371747871b9aa1b635fb30a57693891e37982
+  uses: kshehadeh/jekyll-s3-action@0.1
+  - name: Build Number
+  # You may pin to the exact commit or the version.
+  # uses: travisj/build-number-action@0e4fd6dc8a398e03d661434d1d463a9c7fd619cf
+  uses: travisj/build-number-action@v1.0.2
+  with:
+    # set key to something unique (at project level) to get multiple build numbers
+    key: # optional, default is default
+    - name: Build Jekyll
+  # You may pin to the exact commit or the version.
+  # uses: jerryjvl/jekyll-build-action@0bab4194a14ea47ae5ca609fc5b95aaadab40060
+  uses: jerryjvl/jekyll-build-action@v1
+  - name: RPM Build
+  # You may pin to the exact commit or the version.
+  # uses: naveenrajm7/rpmbuild@b52f0e593effaa08f4726afa0d0e2960131685c7
+  uses: naveenrajm7/rpmbuild@v1.0.0
+  with:
+    # path to the spec file
+    spec_file: # default is *.spec
+    - name: Build RPM
+  # You may pin to the exact commit or the version.
+  # uses: biohuns/rpmbuild-centos8-action@be4f026e560c19ce15695033000fb2294ce8814d
+  uses: biohuns/rpmbuild-centos8-action@v1.0.0
+  - name: LÖVE Build
+  # You may pin to the exact commit or the version.
+  # uses: nhartland/love-build@a6462dd03e091b755d320b2b7f9714b461631b63
+  uses: nhartland/love-build@v1-beta2
+  with:
+    # Name of the application to be built
+    app_name: # default is love-build-app
+    # Version of LÖVE to be used in building the application
+    love_version: # default is 11.3
+    # Path to dependencies rockspec relative to GitHub workspace
+    dependencies: # optional
+    # Path in the repository to the subdirectory containing `main.lua`. By default the repo root
+    source_dir: # default is ./
+    # Directory in the GitHub workspace where the built distributables should be located
+    result_dir: # default is release
+    - name: Build AppImage
+  # You may pin to the exact commit or the version.
+  # uses: AppImageCrafters/build-appimage@2f48abf7a0e74a879ac316eabd3c0db954515eb3
+  uses: AppImageCrafters/build-appimage@v1
+  with:
+    # appimage-builder recipe file
+    recipe: # default is AppImageBuilder.yml
+    - name: Deploy Build
+  # You may pin to the exact commit or the version.
+  # uses: daryl-cecile/DeployBuildFTP@408b76b48b78eed86e00f76fd226af9b6baa0379
+  uses: daryl-cecile/DeployBuildFTP@Alpha-3
+  with:
+    # Personal access token (PAT) used to fetch the repository.
+    repo-token: # default is ${{ github.token }}
+    # The path to the deploy rules file
+    rule-file: # optional, default is .deploybuild
+    # The username to use for the FTP request
+    ftp-user: 
+    # The password to use for FTP authentication
+    ftp-password: 
+    # The host to use for FTP connection
+    ftp-host: 
+    # The port to use for the connection (defaults to 21)
+    ftp-port: # optional, default is 21
+    # The folder where the files should end up on the FTP Server
+    ftp-destination: # optional, default is ./
+    # Whether the destination folder should be cleaned up before pushing files
+    opt-clean: # optional, default is false
+    - name: VEX Build
+  # You may pin to the exact commit or the version.
+  # uses: schineaj23/vex-build@51522ea2fe2cc558e56c3e764f2ae6a88c0bf70e
+  uses: schineaj23/vex-build@v1.0
+  with:
+    # Path to makefile
+    path: # optional, default is .
+    - name: Treble Build
+  # You may pin to the exact commit or the version.
+  # uses: memiks/treble-build-github-actions@6c90013013deb1fb7ded783513f8abec22de0f51
+  uses: memiks/treble-build-github-actions@v0.0.2
+  - name: Xcode Build
+  # You may pin to the exact commit or the version.
+  # uses: devbotsxyz/xcode-build@2138f429e7bebe426d65985aca0dbad5370aa697
+  uses: devbotsxyz/xcode-build@v1.0.0
+  with:
+    # Workspace
+    workspace: # optional
+    # Project
+    project: # optional
+    # Scheme
+    scheme: # optional
+    # Configuration
+    configuration: # optional
+    # Code sign identity
+    code-sign-identity: # optional, default is -
+    - name: Datapane Build
+  # You may pin to the exact commit or the version.
+  # uses: datapane/build-action@926dd8ea0de1c1827be8e226b1e7acda1776fb8a
+  uses: datapane/build-action@v2
+  with:
+    # Path to your script
+    script: 
+    # API token
+    token: # optional
+    # Datapane server host
+    server: # optional, default is https://datapane.com
+    # Script dependencies, using pip requirements syntax
+    requirements: # optional, default is []
+    # Script Parameters
+    parameters: # optional, default is {}
+    # Datapane version to install, using pip specification
+    version: # optional
+    - name: Build Godot
+  # You may pin to the exact commit or the version.
+  # uses: josephbmanley/build-godot-action@11589640849ce5bd1bab945c694bb418cb06cb15
+  uses: josephbmanley/build-godot-action@v1.4.1
+  with:
+    # Name of the exported binary
+    name: 
+    # Name of the preset in `export_presets.cfg` to use
+    preset: 
+    # Optional name of the subdirectory to put exported project in
+    subdirectory: # optional, default is 
+    # Set true to output an artifact zip file
+    package: # optional
+    # Location of Godot project in repository
+    projectDir: # optional, default is .
+    # Whether or not to use `--export-debug`
+    debugMode: # optional
+    - name: Pyenv Build
+  # You may pin to the exact commit or the version.
+  # uses: gabrielfalcao/pyenv-action@1762cbbaf5bf7e2226693e9967372635f391db41
+  uses: gabrielfalcao/pyenv-action@v7
+  with:
+    # what command to execute for each python version, runs within the default shell
+
+    command: 
+    # what is the default python version, automatically installs this
+version with pyenv even if not listed in the "versions" input.
+
+    default: # optional
+    # A list of python versions to install with pyenv separated by
+comma. (e.g.: "3.6.5,3.7.3, 3.2.6")
+
+    versions: # optional
+    - name: Build Julia
+  # You may pin to the exact commit or the version.
+  # uses: julia-actions/build-julia@7ad9371ab611d4e8ed024b4a94369afa0b3d4a55
+  uses: julia-actions/build-julia@v1.0.1
+  with:
+    # Value passed to git checkout.
+    ref: # optional, default is master
+    # Value passed to git clone.
+    source-repo: # optional, default is https://github.com/JuliaLang/julia.git
+    # Directory that Julia will be installed in
+    target-dir: # optional, default is $HOME/julia
+    - name: OPA Build
+  # You may pin to the exact commit or the version.
+  # uses: aserto-dev/opa-build-action@5763ee29198e5044d18d8fe28eb017096e18f244
+  uses: aserto-dev/opa-build-action@v1
+  with:
+    # filepath to build input source
+    source: # default is ./src
+    # filepath to build output
+    target: # default is ./build/bundle.tar.gz
+    # build options
+    options: # optional
+    - name: Build TechDocs
+  # You may pin to the exact commit or the version.
+  # uses: erikxiv/techdocs-action@835de4d147be0c4088e60f47338310443e28db19
+  uses: erikxiv/techdocs-action@v1
+  - name: Build Buf
+  # You may pin to the exact commit or the version.
+  # uses: ory/build-buf-action@45e54112a6f3f68cdb80c3dde304338dbf49843d
+  uses: ory/build-buf-action@v0.0.10
+  with:
+    # The version of buf to use (as in their GitHub releases)
+    bufVersion: # optional, default is v0.31.1
+    # The arguments to pass to buf
+    bufArgs: # optional, default is check lint
+    # The protoc language plugins to install, space separated. See README for supported plugins.
+    protocPlugins: # optional, default is none
+    - name: Antora Build
+  # You may pin to the exact commit or the version.
+  # uses: rgn/antora-build-action@749cce2b5c4d53efb073bea74735e750c63fcce0
+  uses: rgn/antora-build-action@v0.1
+  with:
+    # The playbook file to use.
+    playbook: # optional, default is antora-playbook.yml
+    - name: Okteto Build
+  # You may pin to the exact commit or the version.
+  # uses: okteto/build@795321f645a8836296b9d857dc3f28454abf31e6
+  uses: okteto/build@v4.2
+  with:
+    # Name and tag in the "name:tag" format
+    tag: 
+    # Name of the Dockerfile (Default is "Dockerfile")
+    file: # optional, default is Dockerfile
+    # The path
+    path: # optional, default is .
+    # Use buildargs when you want to pass a list of environment variables as build-args
+    buildargs: # optional
+    - name: TypeScript Build
+  # You may pin to the exact commit or the version.
+  # uses: alexthemaster/action-build-typescript@ca4abf142f236aba57ae954c4f10615b006d1e6e
+  uses: alexthemaster/action-build-typescript@v1.2.1
+  with:
+    # Whether or not to push the compiled code to a different branch
+    pushToBranch: # optional
+    # The name of the branch the action should push the compiled code
+    branch: # optional, default is dist
+    # Your GitHub secret token
+    githubToken: # optional
+    - name: Meson Build
+  # You may pin to the exact commit or the version.
+  # uses: BSFishy/meson-build@656b2a360964b249ac82905a52018921e01d875b
+  uses: BSFishy/meson-build@v1.0.3
+  with:
+    # The action to run
+    action: 
+    # The directory to build the project to
+    directory: # default is build
+    # Additional options to pass to Meson during setup
+    setup-options: # optional, default is 
+    # Additional options to pass to Meson
+    options: # optional, default is 
+    # The version of Meson to use
+    meson-version: # default is 0.53.2
+    # The version of Ninja to use
+    ninja-version: # default is 1.9.0.post1
+    # The version of gcovr to use (If doing coverage)
+    gcovr-version: # default is 4.2
+    - name: Build Unity
+  # You may pin to the exact commit or the version.
+  # uses: kuler90/build-unity@043abc65b2c15b81414e16bf297fb4c6f09ec8a5
+  uses: kuler90/build-unity@v1.0.4
+  with:
+    # Path to Unity executable. UNITY_PATH env will be used if not provided
+    unity-path: # optional
+    # Path to Unity project
+    project-path: # optional, default is ${{ github.workspace }}
+    # Build target
+    build-target: 
+    # Path to build output. Only for default build method
+    build-path: # optional
+    # Set application version. Only for default build method
+    build-version: # optional
+    # Set application build number. Only for default build method
+    build-number: # optional
+    # Set scripting define symbols. For example, RELEASE_VERSION;ENG_VERSION. Only for default build method
+    build-defines: # optional
+    # The base64 contents of the android keystore file. Only for default build method
+    android-keystore-base64: # optional
+    # The android keystore password. Only for default build method
+    android-keystore-pass: # optional
+    # The android keyalias name. Only for default build method
+    android-keyalias-name: # optional
+    # The android keyalias password. Only for default build method
+    android-keyalias-pass: # optional
+    # Path to build method. For example, MyEditorScript.PerformBuild. Default build method will be used if not provided
+    build-method: # optional
+    # Custom arguments for build method
+    build-method-args: # optional
+    - name: Build Marlin
+  # You may pin to the exact commit or the version.
+  # uses: Transmitt0r/build-marlin-action@e4c530019704a22521ed0247b548b748366adf4a
+  uses: Transmitt0r/build-marlin-action@v1.0.0
+  - name: AppPack Build
+  # You may pin to the exact commit or the version.
+  # uses: apppackio/build-action@249f50e5718623067fd96946b26635822ad0363b
+  uses: apppackio/build-action@v1
+  with:
+    # Name of the AppPack app
+    appname: 
+    - name: Build Boost
+  # You may pin to the exact commit or the version.
+  # uses: egor-tensin/build-boost@bfb61b9fccc827f0c502fc400f6f63cc74f2d79a
+  uses: egor-tensin/build-boost@v1
+  with:
+    # Version to build
+    version: 
+    # Space-separated list of libraries
+    libraries: 
+    # Toolset to use
+    toolset: # optional, default is auto
+    # Target platform
+    platform: # optional, default is x64
+    # Configuration to build
+    configuration: # optional, default is Release
+    # Build static libraries
+    static: # optional, default is 0
+    # Link to the static runtime
+    static-runtime: # optional, default is 0
+    # Destination directory
+    directory: # optional
+    - name: Bicep Build
+  # You may pin to the exact commit or the version.
+  # uses: aliencube/bicep-build-actions@9f46db3c20a0bcb92b48bd300207284d164ca3db
+  uses: aliencube/bicep-build-actions@v0.3
+  with:
+    # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
+    files: 
+    # Version of the bicep CLI. It can be the exact version (eg. `v0.3.255`), wildcard (eg. `v0.3.x`) or `latest`. If omitted, `latest` is set as default.
+    version: # optional, default is latest
+    - name: Heroku Build
+  # You may pin to the exact commit or the version.
+  # uses: behe/heroku-build@33144872cee51ac497ed1e10f561214af9399bc1
+  uses: behe/heroku-build@v1
+  with:
+    # Name of Heroku application
+    app-name: 
+    # API key with the deploy role
+    api-key: 
+    # Directory to upload
+    path: # optional, default is .
+    - name: blogit-build
+  # You may pin to the exact commit or the version.
+  # uses: caixw/blogit@2d4493156928aea8b41b38a6eb4c67b433f7b818
+  uses: caixw/blogit@v1.5.3
+  with:
+    # 编译后的输出目录
+    dest: 
+    # 源码目录
+    src: 
+    - name: bach-build
+  # You may pin to the exact commit or the version.
+  # uses: sormuras/bach-build@f230d7fe70f0112f5d0af4f875f0cb598b2b022c
+  uses: sormuras/bach-build@1.2
+  with:
+    # The arguments to be passed to Bach.
+    bach-arguments: # default is build
+    # The version of Bach to initialize. Find available versions listed at https://github.com/sormuras/bach/releases
+    bach-version: # default is 17-ea
+    # The directory to change into.
+    working-directory: # default is ${{ github.workspace }}
+    - name: ispw-build
+  # You may pin to the exact commit or the version.
+  # uses: bmc-compuware/ispw-build@70f99c025da6ccd14a1687e38e0e8cfef961d971
+  uses: bmc-compuware/ispw-build@v1.0.0
+  with:
+    # The URL to send requests to.
+    ces_url: 
+    # The token to use when connecting to ISPW through CES
+    ces_token: 
+    # The ID for the instance of ISPW to connect to
+    srid: 
+    # The runtime configuration used when connecting to ISPW
+    runtime_configuration: # optional
+    # The comma-separated list of task IDs for the tasks that need to be built
+    task_id: # optional
+    # The request parameters for the build will come from a file written to a local directory. This option is only valid when used in combination with a Git to ISPW Integration step
+    build_automatically: # optional
+    # S for standard, I for incidental, or E for emergency. Default value of S
+    change_type: # default is S
+    # I for immediate execution or at start date/time, H to create request in hold
+    execution_status: # default is I
+    - name: Build DotNet
+  # You may pin to the exact commit or the version.
+  # uses: Elskom/build-dotnet@54d97a0f7d5d5ca946404976db00d27386b09254
+  uses: Elskom/build-dotnet@v1.1.1
+  with:
+    # Filepath of the solution of which contains all the projects to be built, optionally tested and packed, relative to root of repository
+    SOLUTION_FILE_PATH: # optional, default is 
+    # Flag to toggle running unit tests for the projects built, disabled by default
+    TEST: # optional
+    # Flag to toggle packing the projects built
+    PACK: # optional, default is true
+    - name: jprm-build
+  # You may pin to the exact commit or the version.
+  # uses: oddstr13/jellyfin-plugin-repository-manager@348dfa62568e028288127a9bfd77ab9200b3896b
+  uses: oddstr13/jellyfin-plugin-repository-manager@v0.4.2
+  with:
+    # The path to the sources of the plugin solution (default: ".")
+    path: # optional, default is .
+    # Path to dotnet build directory (default: artifacts)
+    output: # optional, default is artifacts
+    # Overwrite the detected version of the plugin (default: "")
+    version: # optional, default is 
+    # The dotnet build configuration (default: Release)
+    dotnet-config: # optional, default is Release
+    # The dotnet target framework used for the plugin build (default: net5.0)
+    dotnet-target: # optional, default is net5.0
+    - name: Aserto Build
+  # You may pin to the exact commit or the version.
+  # uses: aserto-dev/aserto-build-action@7eb3ddb5e440972d2a869ae267f527cefa14da00
+  uses: aserto-dev/aserto-build-action@v2
+  with:
+    # directory path to build input source
+    source_path: # default is src
+    # directory path to build output directory
+    target_path: # default is build
+    # build output filename
+    target_file: # default is bundle.tar.gz
+    # revision tag (GitHub SHA)
+    revision: # optional
+    # optional build options like --debug, --optimize, ...
+    build_options: # optional
+    # verbose logging [ true | false ]
+    verbose: # default is false
+    - name: Build Hugo
+  # You may pin to the exact commit or the version.
+  # uses: lowply/build-hugo@70831c2d7c33229d99fe7b22e76ca87e37c0734c
+  uses: lowply/build-hugo@v0.85.0
+  - name: Sass Build
+  # You may pin to the exact commit or the version.
+  # uses: gha-utilities/sass-build@6c876a2c90edb7d5c1f63daa18411a7649c54cc2
+  uses: gha-utilities/sass-build@v0.4.4
+  with:
+    # Relative path(s) to SASS or SCSS file, eg. _scss/main.scss
+    source: 
+    # Path(s) compiled CSS should be saved, eg. ~/workspace_sass/assets/css/main.css
+    destination: 
+    # Array (Action splits on ":"), of directories to look under for imports and used modules
+    includePaths: # optional
+    # String, either "expanded", "compressed", "nested", "compact"; defaults to "compressed"
+    outputStyle: # optional
+    # Integer and float precision when compiling CSS, eg. `20`
+    precision: # optional
+    # String, either "space" or "tab", default "space"
+    indentType: # optional
+    # Integer, of tabs/spaces used to indent, eg. `1`
+    indentWidth: # optional, default is 2
+    # String, either "lf", "lfcr", "cr", or "crlf", default "lf"
+    linefeed: # optional
+    # Boolean, default `false` if `true` emits comments where CSS was compiled from
+    sourceComments: # optional
+    # May be boolean or string, see https://sass-lang.com/documentation/js-api#sourcemap
+    sourceMap: # optional
+    # String, does not write but is useful in combination with "sourceMap"
+    outFile: # optional
+    # Boolean, when `true` compiled CSS is not linked to source map
+    omitSourceMapUrl: # optional
+    # Boolean, when `true` embeds contents of Sass files that contributed to compiled CSS
+    sourceMapContents: # optional
+    # Boolean, when `true` embeds source map within compiled CSS
+    sourceMapEmbed: # optional
+    # String, prepended to all links from from source map to Sass files
+    sourceMapRoot: # optional
+    # Outputs render_options used for compiling CSS
+    debug: # optional
+    - name: HarmonyOS-build
+  # You may pin to the exact commit or the version.
+  # uses: applibgroup/HarmonyOsSdk@640f3d3427b5e2a865449c574461a764b350adf4
+  uses: applibgroup/HarmonyOsSdk@v1.2
+  - name: Packer build
+  # You may pin to the exact commit or the version.
+  # uses: riznob/packer-build-action@6fc818476da47cc44d89b7695ee38b4954188d23
+  uses: riznob/packer-build-action@v1.5
+  with:
+    # Packer template file to use for packer build
+    templateFile: # optional, default is packer-template.json
+    # Var file to use for packer build
+    varFile: # optional, default is packer-vars.json
+    # Directory where the packer template and var file reside
+    workingDir: # optional, default is .
+    - name: Hugo Build
+  # You may pin to the exact commit or the version.
+  # uses: jakejarvis/hugo-build-action@92e728bcd970a139a2c3b057eec2bdfa45cbaf3f
+  uses: jakejarvis/hugo-build-action@v0.86.1
+  - name: Docker Buildx Pull or Build
+  # You may pin to the exact commit or the version.
+  # uses: djbender/docker-buildx-pull-or-build@fce252fd09be7c61ce95c04afaf73e90a09a742b
+  uses: djbender/docker-buildx-pull-or-build@v0.5
+  with:
+    # The password to authenticate with the registry. Required if `docker_config_json` is blank.
+    docker_password: # optional
+    # 
+    docker_registry: # optional
+    # The username to authenticate with the registry. Required if `docker_config_json` is blank.
+    docker_username: # optional
+    # The Dockerfile to build when the remote image is not available.
+    dockerfile: 
+    # The image name that this action will either 1) pull 2) build and push.
+    image: 
+    # Optionally specify an image cache name. Default: `<image>:cache`
+    image_cache: # optional
+    # Skip the initial `docker pull` because this tag is not immutable (i.e.: `latest`, `stable-1.0`). Default: `'false'`
+    living_tag: # optional
+    # Optionally authenticate with existing stored credentials by serializing `~/.docker/config.json`. If present, this will override the `docker_username` and `docker_password` inputs. E.g.: `$(cat ~/.docker/config.json)` or `"{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"SEKRET\"}}}"`.
+    docker_config_json: # optional
+    # Optionally toggle all caching mechanisms. Default: `'true'`
+    cache: # optional, default is true
+    # Optionally pass in comma-separated build args. Default: `''`
+    build_args: # optional
+    - name: Github action build chain. Cross-repo builds
+  # You may pin to the exact commit or the version.
+  # uses: kiegroup/github-action-build-chain@ea542618297c64cfe792f371ade8f9310c00c4e6
+  uses: kiegroup/github-action-build-chain@v2.2
+  with:
+    # the file where the build chain is defined. It can a file in the same repository (relative path) or a URL
+    definition-file: 
+    # the flow to execute, it can be 'pull-request', 'full-downstream' or 'single'
+    flow-type: # optional, default is pull-request
+    - name: Github action build chain. Cross-repo builds
+  # You may pin to the exact commit or the version.
+  # uses: kiegroup/github-action-build-chain@359f0699538bf5ef333c4c81d24ca97654048aad
+  uses: kiegroup/github-action-build-chain@v2.4
+  with:
+    # the file where the build chain is defined. It can a file in the same repository (relative path) or a URL
+    definition-file: 
+    # the flow to execute, it can be 'pull-request', 'full-downstream' or 'single'
+    flow-type: # optional, default is pull-request
+    # the project to start flow from. By default is the project triggering the job
+    starting-project: # optional
+    - name: buildpacks.io
+  # You may pin to the exact commit or the version.
+  # uses: bigloupe/buildpacks-action@2ff971052a193772e4d9e73b76e74c624356fadb
+  uses: bigloupe/buildpacks-action@0.18.1
+  with:
+    # Name of container image
+    image: 
+    # Tag of container image
+    tag: # optional, default is latest
+    # Path to target application
+    path: 
+    # Builder to use
+    builder: 
+    # Custom buildpacks to use
+    buildpacks: # optional
+    # Build-time environment variables
+    env: # optional
+    - name: BuildPulse
+  # You may pin to the exact commit or the version.
+  # uses: Workshop64/buildpulse-action@74cf89325a94357870ee1328289aba32b13049e8
+  uses: Workshop64/buildpulse-action@v0.5.0
+  with:
+    # BuildPulse's unique numeric identifier for the account that owns the
+repository.
+
+    account: 
+    # BuildPulse's unique numeric identifier for the repository.
+
+    repository: 
+    # Path to the XML file(s) for the test results.
+
+The path can be a directory (e.g., "test/reports"), a single file (e.g.,
+"reports/junit.xml"), or a glob (e.g., "app/*/results/*.xml").
+
+    path: 
+    # BuildPulse access key ID for the account that owns the repository.
+
+In the GitHub settings for your repository, create an encrypted secret
+named BUILDPULSE_ACCESS_KEY_ID and set its value to the BuildPulse access
+key ID for your account. For help creating encrypted secrets, please see
+the GitHub docs at https://git.io/JvX7H.
+
+Then, use the encrypted secret as the value for the 'key' input in your
+workflow. For help using a secret in a workflow, please see the GitHub
+docs at https://git.io/JvX77.
+
+    key: 
+    # BuildPulse secret access key for the account that owns the repository.
+
+In the GitHub settings for your repository, create an encrypted secret
+named BUILDPULSE_SECRET_ACCESS_KEY and set its value to the BuildPulse
+secret access key for your account. For help creating encrypted secrets,
+please see the GitHub docs at https://git.io/JvX7H.
+
+Then, use the encrypted secret as the value for the 'secret' input in your
+workflow. For help using a secret in a workflow, please see the GitHub
+docs at https://git.io/JvX77.
+
+    secret: 
+    # Path to the local git clone of the repository (default: ".").
+
+    repository-path: # optional, default is .
+    - name: IntelliCode Team Completions
+  uses: microsoft/vs-intellicode@v1.0
+  with:
+    # Only for C++ extractions. Sets the platform for the C++ build (ARM, Any CPU, etc).
+    platform: # optional
+    # Only for C++ extractions. Sets the configuration for the C++ build (Debug, Release).
+    config: # optional
+    # Use if you wish to override the directory where the repo to be trained is located at.
+    directory: # optional
+    # Use debug to override logs and display diagnostics verbosity
+    logs: # optional
+    - name: Fortify on Demand Scan
+  # You may pin to the exact commit or the version.
+  # uses: fortify/gha-setup-fod-uploader@636f3c3a14aec1747eec5242a02c6349e4f3cce6
+  uses: fortify/gha-setup-fod-uploader@v1.0.1
+  with:
+    # FoDUploader version to use
+    version: # default is latest
+    - name: Fortify ScanCentral Scan
+  # You may pin to the exact commit or the version.
+  # uses: fortify/gha-setup-scancentral-client@906d5cb5d8765c2e86e1ae7d32cd7b4bf45103f2
+  uses: fortify/gha-setup-scancentral-client@v1.2.0
+  with:
+    # Fortify ScanCentral Client version to use
+    version: # default is 20.2.0
+    # ScanCentral client authentication token
+    client-auth-token: # optional
+    - name: Steam - Deploy
+  # You may pin to the exact commit or the version.
+  # uses: game-ci/steam-deploy@c18eb6aa08a18e5c4a6c7a1affe355f4031f809e
+  uses: game-ci/steam-deploy@v0.1
+  with:
+    # The app id within steam partner network.
+    appId: # default is 
+    # Description for this build.
+    buildDescription: # optional
+    # The username of your builder account.
+    username: # default is 
+    # The password of your builder account.
+    password: # default is 
+    # The multi-factor authentication code from steam guard, that is emailed when attempting to sign in.
+    mfaCode: # optional, default is 
+    - name: Setup Pulumi CLI
+  # You may pin to the exact commit or the version.
+  # uses: pulumi/setup-pulumi@b374ceb6168550de27c6eba92e01c1a774040e11
+  uses: pulumi/setup-pulumi@v2.0.0
+  with:
+    # Version of the Pulumi CLI to install, or 'latest' (default). This accepts semver ranges like ^3.0.0.
+    pulumi-version: # default is latest
+    # Token used to query pulumi versions
+    github-token: # default is ${{ github.token }}
+    - name: Build Re:VIEW
+  # You may pin to the exact commit or the version.
+  # uses: vibranthq/build-review@1700b8bf5488d017b2a84057e6a88fe403532dfb
+  uses: vibranthq/build-review@v1
+  with:
+    # Directory to build
+    build: # optional, default is articles
+    # Directory to dist
+    dist: # optional, default is dist
+    # Output format
+    format: # optional, default is pdf
+    # Theme for book
+    theme: # optional, default is techbooster
+    # Paper size for the book
+    paperSize: # optional, default is A5
+    - name: Android Builder
+  # You may pin to the exact commit or the version.
+  # uses: b4s36t4/Android-Action@bb5c066db6ca0824ee09ee640ca222888a0c2877
+  uses: b4s36t4/Android-Action@0.0.1
+  - name: linuxkit-builder
+  # You may pin to the exact commit or the version.
+  # uses: vouch-opensource/linuxkit-build@ca3107bf2dc10c059fa914e9475dcf3fc3a4ea99
+  uses: vouch-opensource/linuxkit-build@1.2
+  with:
+    # LinuxKit YAML configuration file(s) (eg lxk-build.yml)
+    config: 
+    # The output format (eg aws, gcp, iso-efi, etc...)
+    format: # optional, default is kernel+initrd
+    - name: tools.deps-builder
+  # You may pin to the exact commit or the version.
+  # uses: vouch-opensource/tools.deps-build@aa0b444776fc18fa431567e93c46045dece05fd2
+  uses: vouch-opensource/tools.deps-build@1.0.1
+  with:
+    # The alias or concatenated aliases (eg test, mem:test, ...)
+    alias: # default is test
+    # Any java opts (eg -Xmx512m)
+    java-opts: # optional
+    # GitHub secret with the SSH private key to access your private repositories
+    ssh-key: # optional
+    # Working directoy in which to execute the clojure command
+    working-directory: # optional
+    - name: Octopress builder
+  # You may pin to the exact commit or the version.
+  # uses: rcmdnk/octopress-action@c03bb5cc5b7fd3581edd1d01ddb30646ba7e8388
+  uses: rcmdnk/octopress-action@v1.0.0
+  with:
+    # Git user email
+    git_user_email: 
+    # Git user name
+    git_user_name: 
+    # ssh key for the deployment
+    ssh_key: 
+    # known_hosts of the destination server
+    known_hosts: # default is github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+    # rake generate option (for the octogray)
+    generate_option: # default is no_minify
+    # Deploy option for Octopress rake deploy (for the octogray)
+    deploy_option: # default is push_ex
+    - name: XRPackage Builder
+  # You may pin to the exact commit or the version.
+  # uses: webaverse/xrpackage-build-action@5919cbb26e4410fde2cd3ab2d1ce5cc4dea73836
+  uses: webaverse/xrpackage-build-action@v1.0.0
+  with:
+    # Input directory path relative to repository root
+    src: # default is .
+    # Output file name
+    dst: # default is a.wbn
+    - name: Container Builder
+  # You may pin to the exact commit or the version.
+  # uses: snapserv/action-container-builder@ebb2c27a27c4810f07bd196c9105687ea7e33276
+  uses: snapserv/action-container-builder@v0.2.3
+  with:
+    # Enable/disable the build phase of this action
+    build: # optional, default is true
+    # Enable/disable the publish phase of this action
+    publish: # optional, default is true
+    # Path to build context, relative to repository
+    build_context: # optional, default is .
+    # Path to Dockerfile, relative to repository
+    build_dockerfile: # optional, default is Dockerfile
+    # Desired image repository where images built by this action get stored
+    target_repository: 
+    # Username for build artifact registry
+    target_registry_username: 
+    # Password for build artifact registry
+    target_registry_password: 
+    # Desired cache image repository, defaults to image repository with suffix '-cache'
+    cache_repository: # optional
+    # Username for cache registry, defaults to credentials of build artifact registry
+    cache_registry_username: # optional
+    # Password for cache registry, defaults to credentials of build artifact registry
+    cache_registry_password: # optional
+    # Tag target image with this comma-separated list of tags
+    static_tags: # optional
+    # Tag target image with Git reference
+    tag_with_ref: # optional, default is false
+    # Tag target image with Git commit hash
+    tag_with_sha: # optional, default is false
+    - name: Kaniko builder
+  # You may pin to the exact commit or the version.
+  # uses: aevea/action-kaniko@5e25ae9c63e13a7e79955b4ff2d600732449fdf6
+  uses: aevea/action-kaniko@v0.6.0
+  with:
+    # Path to the build context
+    path: # optional, default is .
+    # Docker registry where the image will be pushed
+    registry: # optional
+    # Username used for authentication to the Docker registry
+    username: # optional
+    # Password used for authentication to the Docker registry
+    password: # optional
+    # Image name
+    image: 
+    # Image tag
+    tag: # optional
+    # Enables build cache
+    cache: # optional
+    # How long the cache should be considered valid
+    cache_ttl: # optional
+    # Docker registry meant to be used as cache
+    cache_registry: # optional
+    # Filesystem path meant to be used as cache
+    cache_directory: # optional
+    # Dockerfile filename
+    build_file: # optional
+    # Prefix to be stripped from the tag
+    strip_tag_prefix: # optional
+    # Additional arguments to be passed to the kaniko executor
+    extra_args: # optional
+    # Avoids pushing the image if the build generated the same digest
+    skip_unchanged_digest: # optional
+    # Tags the built image with additional latest tag
+    tag_with_latest: # optional
+    # Sets the target stage to build
+    target: # optional
+    - name: Docker Buildx
+  # You may pin to the exact commit or the version.
+  # uses: crazy-max/ghaction-docker-buildx@126d331dc69f4a1aa02452e374835e6a5d565613
+  uses: crazy-max/ghaction-docker-buildx@v3.3.1
+  with:
+    # Buildx version. Example: v0.3.0
+    buildx-version: # optional, default is latest
+    # QEMU static binaries Docker image version. Example: 4.2.0-7
+    qemu-version: # optional, default is latest
+    - name: Flatpak Builder
+  # You may pin to the exact commit or the version.
+  # uses: bilelmoussaoui/flatpak-github-actions@fcc75a490e0a97ff4785b706adfc4fc10e732f4e
+  uses: bilelmoussaoui/flatpak-github-actions@v2
+  with:
+    # The relative path of the manifest file.
+    manifest-path: 
+    # The bundle name, by default it's app.flatpak
+    bundle: # optional, default is app.flatpak
+    # The repository used to fetch the runtime when the user downloads the Flatpak bundle.
+
+    runtime-repo: # optional, default is https://flathub.org/repo/flathub.flatpakrepo
+    # Toggles the run-tests config option on the defined flatpak-module. Possible values: true, enabled, yes, y. Or something else to disable them.
+
+    run-tests: # optional, default is false
+    # The flatpak branch
+    branch: # optional, default is master
+    - name: Arduino builder
+  # You may pin to the exact commit or the version.
+  # uses: dark0ghost/arduino_action@1e567e3f2dd571a93b01822eff17345e43511da1
+  uses: dark0ghost/arduino_action@v1.1
+  with:
+    # file compile
+    file: 
+    # link to sketch
+    link: # optional, default is https://arduino.esp8266.com/stable/package_esp8266com_index.json
+    - name: GBDK Builder
+  # You may pin to the exact commit or the version.
+  # uses: wujood/gbdk-2020-github-builder@f217fe0614cfaa96dfc31363e17e25565416973f
+  uses: wujood/gbdk-2020-github-builder@1.0.4
+  with:
+    # Path to sources
+    subdirectory: # optional, default is .
+    - name: Skeleton Builder
+  # You may pin to the exact commit or the version.
+  # uses: getgrav/skeleton-builder@3ae94b5a55d670e7f44e525a34d4f5afa5d8f5e6
+  uses: getgrav/skeleton-builder@v1.0.1
+  with:
+    # Which Grav version should be used (defaults to latest stable)
+    version: # default is latest
+    # Create also a package copy with the Admin Plugin installed
+    admin: # optional, default is true
+    # Space separated file names to exclude (ie, README.md *private/*)
+    exclude: # optional, default is 
+    # Wether to append the release version in the filename
+    filename_version: # optional, default is true
+    # Outputs everything to help identifying potential issues.
+    verbose: # optional
+    - name: Honeycomb Buildevents
+  # You may pin to the exact commit or the version.
+  # uses: kvrhdn/gha-buildevents@b1b329d03da736da7a443273079e3aa420e82e7a
+  uses: kvrhdn/gha-buildevents@v1.0.5
+  with:
+    # A Honeycomb API key - needed to send traces.
+    apikey: 
+    # The Honeycomb dataset to send traces to.
+    dataset: 
+    # The job status.
+    job-status: 
+    # Set this to a key unique for this matrix cell, only useful when using a build matrix.
+    matrix-key: # optional
+    - name: Opspresso Builder
+  # You may pin to the exact commit or the version.
+  # uses: opspresso/action-builder@8adfc4e52b245c03613405f620f2216416a0aba6
+  uses: opspresso/action-builder@v0.3.11
+  - name: SlateDocs Builder
+  # You may pin to the exact commit or the version.
+  # uses: Josh-AS/slate-builder-action@63a3ca10b8d3d429f0edd248238d7890710a263f
+  uses: Josh-AS/slate-builder-action@v1.0.1
+  with:
+    # Path to the folder containing your .md files, from the root of the repo. Defaults to the root folder
+    docsPath: # optional, default is /
+    - name: Buildpack CI
+  # You may pin to the exact commit or the version.
+  # uses: buildpack-ci/run-tests@96bf48fe87c7d163feda52d978bfb62f72d301a3
+  uses: buildpack-ci/run-tests@v1
+  - name: Openscad builder
+  # You may pin to the exact commit or the version.
+  # uses: dvoros/openscad-builder@41f37ac7f32b2322c69319241c0baab3b09e62fb
+  uses: dvoros/openscad-builder@v1
+  with:
+    # Gradle task to execute.
+    gradle-task: # optional, default is allStl
+    - name: buildpacks-action
+  # You may pin to the exact commit or the version.
+  # uses: mamezou-tech/buildpacks-action@5079136ba5387f92bce03d94908732389b982566
+  uses: mamezou-tech/buildpacks-action@v0.4.0
+  with:
+    # Name of container image
+    image: 
+    # Tag of container image
+    tag: # optional, default is latest
+    # Path to target application, defaults to the current directory
+    path: # optional, default is .
+    # Builder to use
+    builder: 
+    # Custom buildpacks to use
+    buildpacks: # optional
+    # Build-time environment variables
+    env: # optional
+    # Read build-time environment variables from these files
+    env_files: # optional
+    - name: buildcache-action
+  # You may pin to the exact commit or the version.
+  # uses: mikehardy/buildcache-action@50738c6c77de7f34e66b870e4f8ede333b69d077
+  uses: mikehardy/buildcache-action@v1.2.1
+  with:
+    # An additional string to use in the cache key
+    cache_key: # optional
+    # deprecated: synonym for `cache_key`, use cache_key. Will be removed in v2
+    key: # optional
+    # Your GitHub Access Token to fetch buildcache latest build, defaults to: {{ github.token }}
+    access_token: # optional, default is ${{ github.token }}
+    # Where to install buildcache, GITHUB_WORKSPACE by default. Will be exported on PATH
+    install_dir: # optional, default is ${{ github.workspace }}
+    # If set to true, any buildcache log create during the run will be uploaded as an artifact
+    upload_buildcache_log: # optional
+    # Defaults to true, will print stats on restore, then zero them for run-specific stats on save
+    zero_buildcache_stats: # optional, default is true
+    - name: Build Hugo Site
+  # You may pin to the exact commit or the version.
+  # uses: wcchristian/gh-action-hugo-build@a9edf3a8c822d20713a841b166f3b4eaf1b95cce
+  uses: wcchristian/gh-action-hugo-build@v1.0
+  - name: Bugsnag build reporting
+  # You may pin to the exact commit or the version.
+  # uses: sazap10/bugsnag-builds-action@253d21a34e46c41af96987f5f62a3bd6bcce1c68
+  uses: sazap10/bugsnag-builds-action@v1.0.3
+  - name: Build Status Webhook
+  # You may pin to the exact commit or the version.
+  # uses: WalshyDev/Discord-Status-Webhook@7a1cdf6d83958efbc2aa791e2acead07a110ce3c
+  uses: WalshyDev/Discord-Status-Webhook@v1.0
+  - name: FRC Build & Test
+  # You may pin to the exact commit or the version.
+  # uses: Ewpratten/FRC-actions@26e9116aa1d63cd4493bc435a643ed6f9b6c2fba
+  uses: Ewpratten/FRC-actions@v1.1.2
+  with:
+    # What should be run? One of: ["all", "build", "unit_test"]
+    build_mode: # optional, default is all
+    - name: Github Build & Deploy Action
+  # You may pin to the exact commit or the version.
+  # uses: jeoy/github-deploy-actions@3f8d1ed7d1d75b19be105a68af17a9a627d646cd
+  uses: jeoy/github-deploy-actions@v1.0.1
+  - name: Eqela Build Action
+  # You may pin to the exact commit or the version.
+  # uses: ortegarenzy/eqela-build-action@3ff7d5b01307c50fa77c425817c7bbecb4faa621
+  uses: ortegarenzy/eqela-build-action@v1.0.1
+  - name: PR Build & Merge
+  # You may pin to the exact commit or the version.
+  # uses: nikhilaii93/pr-autobuild@69bba8cbd803284570d84212a2d3fcc62742ba26
+  uses: nikhilaii93/pr-autobuild@v1.0.0-beta.1
+  - name: Build Ghost Theme
+  # You may pin to the exact commit or the version.
+  # uses: foolscapcon/action-build-ghost-theme@58d249132f0fa9d95d6f47345c3c5315ee407cce
+  uses: foolscapcon/action-build-ghost-theme@v1.0.9
+  - name: Build, Tag, Publish Docker
+  # You may pin to the exact commit or the version.
+  # uses: HurricanKai/Publish-Docker-Github-Action@3c0211a12af67ddf656d844e0fc1addad9f73428
+  uses: HurricanKai/Publish-Docker-Github-Action@1.11
+  - name: Build V Project
+  # You may pin to the exact commit or the version.
+  # uses: nzbr/vlang-action@04bf0ba92604e37fe10e56ab088261ff59d86290
+  uses: nzbr/vlang-action@v1
+  with:
+    # Additional command line flags for the v compiler. Use "-cc gcc -prod" for optimized builds
+    args: # optional, default is 
+    # 
+    file: # optional, default is .
+    # Commit id (tag, branch or hash) of the v compiler to use
+    compiler: # optional, default is master
+    - name: LIFX Build Light
+  # You may pin to the exact commit or the version.
+  # uses: LIFX/buildlight-action@bc0c93cf7b27b2ee76044c69d09d46dc0e9b6e62
+  uses: LIFX/buildlight-action@v1.0.0
+  with:
+    # A token from your LIFX Cloud account
+    lifx-token: 
+    # The selector to choose which light, see: https://api.developer.lifx.com/docs/selectors
+    selector: 
+    # Either in_progress, success, failure or cancelled
+    status: 
+    - name: slack-build-notifier
+  # You may pin to the exact commit or the version.
+  # uses: hennejg/slack-build-notifier@83e0fdadbfd263eeb64a41273bc8e410644b6aab
+  uses: hennejg/slack-build-notifier@v1.1
+  with:
+    # Specify success or failure or cancelled or custom.
+    status: # optional, default is ${{ job.status }}
+    # json payload
+refs https://github.com/slackapi/node-slack-sdk/blob/v5.0.0/packages/webhook/src/IncomingWebhook.ts#L91-L106)
+
+    payload: # optional
+    # Specify channel or here or empty string.
+    mention: # optional, default is 
+    # Specify channel or here or empty string.
+    only_mention_fail: # optional, default is 
+    # User name for slack notification.
+    author_name: # optional, default is __COMMITTER__
+    # You can overwrite text.
+    text: # optional, default is 
+    # override the legacy integration's default name.
+    username: # optional, default is 
+    # an emoji code string to use in place of the default icon.
+    icon_emoji: # optional, default is 
+    # an icon image URL string to use in place of the default icon.
+    icon_url: # optional, default is 
+    # override the legacy integration's default channel. This should be an ID, such as C8UJ12P4P.
+    channel: # optional, default is 
+    # a comma-separated list of fields to hide from the template
+    exclude_fields: # optional, default is author, action, workflow
+    - name: Build and sign WebExtension
+  # You may pin to the exact commit or the version.
+  # uses: Saphareas/sign-web-extension-action@0758a01886e70b7d1e151ed391701e048bd4999d
+  uses: Saphareas/sign-web-extension-action@v0.1
+  with:
+    # Your key for Mozilla's API
+    amo-api-key: 
+    # Your secret for Mozilla's API
+    amo-api-secret: 
+    # UUID of your existing extension. Signing new extensions is not supported.
+    web-ext-id: 
+    # Set to 'true' to list the extension on AMO. Defaults to 'false' for unlisted signing.
+    sign-listed: 
+    - name: github-action-build
+  # You may pin to the exact commit or the version.
+  # uses: skx/github-action-build@b5ed59cca02a059c66dc815b6abe92eb5a0b913d
+  uses: skx/github-action-build@release-0.6.1
+  with:
+    # The path to the build-script to run, within the repository.
+    builder: # optional, default is .github/build
+    - name: cached-docker-build-push
+  # You may pin to the exact commit or the version.
+  # uses: devmasx/cached-docker-build-push@08c3804a6bad9d1ef911f16a97481d9aafb3a35a
+  uses: devmasx/cached-docker-build-push@v0.2.0
+  with:
+    # Image name, required
+    image_name: 
+    # Image tag, default $GITHUB_SHA
+    image_tag: # optional
+    # Image name for the cache image, default $IMAGE_NAME:cache-$CACHE_STAGE_TARGET
+    cache_image_name: # optional
+    # Name of the stage target for use in cache, two images will be compiled, the stage target and the last stage.
+    cache_stage_target: # optional
+    # Add any docker build flag, --build-params='--build-arg=TOKEN=$TOKEN'
+    build_params: # optional
+    - name: Terraw Build and deploy
+  # You may pin to the exact commit or the version.
+  # uses: cammylabs/github-terraw-deployment@4ae4a5ad012d1b1df1c1c86f846d3fadbb68ce6d
+  uses: cammylabs/github-terraw-deployment@1.01.2
+  with:
+    # Deployment region eg staging-au, production-us etc.
+    enviroment: 
+    # AWS region for AWS CLI
+    aws_region: 
+    # AWS access key id
+    access_key_id: 
+    # AWS secret access key
+    secret_access_key: 
+    - name: Build saber your project
+  # You may pin to the exact commit or the version.
+  # uses: dredav/action-saber-build@946fcc120d4ddab13c03b727ba733dad9d24f8c1
+  uses: dredav/action-saber-build@v1.0
+  - name: Build App Inventor Extension
+  # You may pin to the exact commit or the version.
+  # uses: ysfchn/appinventor-aix-action@686ff3b02b27adb5975532d50c56074bcedaf268
+  uses: ysfchn/appinventor-aix-action@v1.2
+  with:
+    # The git URL of your App Inventor sources.
+    source: # default is https://github.com/mit-cml/appinventor-sources.git
+    # A valid branch name of your App Inventor source repository which extensions will build from.
+    branch: # optional, default is master
+    - name: Creating a maven build
+  # You may pin to the exact commit or the version.
+  # uses: PrajjawalBanati/Java_Programs@1be3a1523ccf20176dc1ef458bcca0927e303fe3
+  uses: PrajjawalBanati/Java_Programs@0.0.1
+  - name: Nuget Build Number Generator
+  # You may pin to the exact commit or the version.
+  # uses: emrekas/build-number@6370ec7d11f84ebb38c5b070f4fb09be66f5310e
+  uses: emrekas/build-number@v3
+  with:
+    # GitHub Token to create and delete refs (GITHUB_TOKEN)
+    token: # optional
+    # Prefix for the build-number-<num> tag to make it unique if tracking multiple build numbers
+    prefix: # optional
+    - name: Dynamic Build Docker Image
+  # You may pin to the exact commit or the version.
+  # uses: flownative/action-docker-build@94f07e1411f0e7421e664e6b9264c2a22a4d65d1
+  uses: flownative/action-docker-build@v1.8.0
+  with:
+    # The full tag reference. This must be a semver tag ref of an existing tagged image. For example, `refs/tags/v1.2.5+12`
+    tag_ref: # default is 
+    # The SHA hash of the Git commit being used for the build. If set, this value is used as a label for the resulting Docker image
+    git_sha: # optional, default is 
+    # The URL leading to the Git repository. If set, this value is used as a label for the resulting Docker image
+    git_repository_url: # optional, default is 
+    # The image name to build, without tag. For example, `flownative/docker-magic-image/magic-image`
+    image_name: # default is 
+    # The image tag to build. If empty, the tag is derived from tag_ref: e.g. `v1.2.5`
+    image_tag: # optional, default is 
+    # Password / token for the Github Docker image registry
+    registry_password: # default is 
+    - name: Dynamic Build Docker Image
+  # You may pin to the exact commit or the version.
+  # uses: flownative/action-docker-build@94f07e1411f0e7421e664e6b9264c2a22a4d65d1
+  uses: flownative/action-docker-build@v1.8.0
+  with:
+    # The full tag reference. This must be a semver tag ref of an existing tagged image. For example, `refs/tags/v1.2.5+12`
+    tag_ref: # default is 
+    # The SHA hash of the Git commit being used for the build. If set, this value is used as a label for the resulting Docker image
+    git_sha: # optional, default is 
+    # The URL leading to the Git repository. If set, this value is used as a label for the resulting Docker image
+    git_repository_url: # optional, default is 
+    # The image name to build, without tag. For example, `flownative/docker-magic-image/magic-image`
+    image_name: # default is 
+    # The image tag to build. If empty, the tag is derived from tag_ref: e.g. `v1.2.5`
+    image_tag: # optional, default is 
+    # Password / token for the Github Docker image registry
+    registry_password: # default is 
+    - name: Build an RPM
+  # You may pin to the exact commit or the version.
+  # uses: robertdebock/rpmbuild-action@de58ddd728996ee3447f32a60ab5362ab07b96da
+  uses: robertdebock/rpmbuild-action@1.1.1
+  with:
+    # The distribution to run the build on.
+    distribution: # optional, default is centos-8
+    - name: Jira Upload Build Info
+  # You may pin to the exact commit or the version.
+  # uses: HighwayThree/jira-upload-build-info@0fba57b7579e14a8e2ee81de7790d480843ba510
+  uses: HighwayThree/jira-upload-build-info@v0.1-alpha
+  with:
+    # Jira cloud url
+    cloud-instance-base-url: 
+    # jira oauth client id
+    client-id: 
+    # jira oauth client secret
+    client-secret: 
+    # 
+    pipeline-id: # optional
+    # 
+    build-number: # optional
+    # 
+    build-display-name: # optional
+    # 
+    build-state: # optional
+    # 
+    build-url: # optional
+    # 
+    update-sequence-number: # optional
+    # 
+    last-updated: # optional
+    # comma delimited list of jira keys
+    issue-keys: 
+    # 
+    commit-id: # optional
+    # 
+    repo-url: # optional
+    # 
+    build-ref-url: # optional
+    # 
+    test-info-total-num: # optional
+    # 
+    test-info-num-passed: # optional
+    # 
+    test-info-num-failed: # optional
+    # 
+    test-info-num-skipped: # optional
+    - name: cargo-static-build
+  # You may pin to the exact commit or the version.
+  # uses: zhxiaogg/cargo-static-build@c73ebfef9174ddf30a8949280b756f87e00904e4
+  uses: zhxiaogg/cargo-static-build@v1.41.1-1
+  with:
+    # build command
+    cmd: # default is cargo build
+    - name: Build & Deploy with Jekyll
+  # You may pin to the exact commit or the version.
+  # uses: victoriadrake/jekyll-cd@698f19ec2091eeb42528a0b36a96e40806a100da
+  uses: victoriadrake/jekyll-cd@v1.0
+  - name: Hugo Build Project
+  # You may pin to the exact commit or the version.
+  # uses: blbecker/hugo-build@5adc90f10ea53672b17a6df6f4d5d1e0c7174f4f
+  uses: blbecker/hugo-build@v1.1
+  with:
+    # Additional arguments to pass to hugo
+    hugo_args: # optional
+    - name: Build and Publish Dockerfile
+  # You may pin to the exact commit or the version.
+  # uses: ryanjfrizzell/action-bpd@7d6d0456081acbdbe2adeae5da1d14f1a0e54498
+  uses: ryanjfrizzell/action-bpd@v1.0.2
+  with:
+    # the url your registry is located at, used for docker login, ex: docker.pkg.github.com
+    docker_registry_url: # default is 
+    # the owner for the registry, ex: ryanjfrizzell
+    docker_registry_owner: # default is 
+    # repository of the image, ex: action-bpd  
+    docker_repository: # default is 
+    # image name to use
+    docker_image: # default is 
+    # username needed to login to your registry
+    docker_username: 
+    # password needed to login to your registry
+    docker_password: 
+    # the location of your dockerfile
+    dockerfile: # default is Dockerfile
+    # the tag version you would like to use
+    docker_image_tag: # default is latest
+    # use this to override the formation of the image url
+    docker_registry: # default is 
+    # are you trying to push to dockerhub? [true/false]
+    dockerhub: # default is false
+    - name: OpenFaaS build and push
+  # You may pin to the exact commit or the version.
+  # uses: mrsimpson/action-openfaas-build@680f6ede77bbefd75d4d44d9f63f0d387bcd9bd2
+  uses: mrsimpson/action-openfaas-build@0.3.0
+  with:
+    # The OpenFaaS function definition file
+    stack-file: # default is stack.yml
+    # Your docker username with push authorization
+    docker-username: 
+    # Your docker password
+    docker-password: 
+    # the platform abbreviations to build for, e. g. linux/amd64,linux/arm/v7
+    platforms: # optional, default is linux/amd64
+    # Whether the built image shall be deployed (false=no, true=yes)
+    deploy: # optional, default is false
+    # OpenFaaS gateway URL (http(s)://my-public-gateway.tld)
+    openfaas-gateway: # optional
+    # User for authenticating at OpenFaaS gateway
+    openfaas-username: # optional, default is admin
+    # Password for authenticating at OpenFaaS gateway
+    openfaas-password: # optional
+    - name: GitHub Build Push
+  # You may pin to the exact commit or the version.
+  # uses: selenehyun/gh-push@644daea399998fee06609add04f6024c1b0add9f
+  uses: selenehyun/gh-push@v0.3.2
+  - name: Post AUR Build Action
+  # You may pin to the exact commit or the version.
+  # uses: DuckSoft/post-aur-build-action@3c2d4cfe6f594a3ca6912e3429cc5b1d0f63d16a
+  uses: DuckSoft/post-aur-build-action@0.1.0
+  - name: Build an Alfred Workflow
+  # You may pin to the exact commit or the version.
+  # uses: mperezi/build-alfred-workflow@1d1d79861c83b8a4a53a2119f73364d321034015
+  uses: mperezi/build-alfred-workflow@v1
+  with:
+    # Directory containing the sources of the workflow
+    workflow_dir: # optional, default is workflow
+    # List of excluded files/directories
+    exclude_patterns: # optional, default is 
+    - name: Build-Test-MSDeploy
+  # You may pin to the exact commit or the version.
+  # uses: RahulParmarRP/dotnet-build-test-msdeploy@aacabf39a0d334aae86e1882d6e82023c5d97795
+  uses: RahulParmarRP/dotnet-build-test-msdeploy@v0.1
+  - name: Bugsnag Report Build
+  # You may pin to the exact commit or the version.
+  # uses: lhansford/bugsnag-report-build-action@e3e1698c6b75a5d38043d5c139f2bc74cd6d2898
+  uses: lhansford/bugsnag-report-build-action@v1.0.9
+  with:
+    # Your Bugsnag API Key
+    apiKey: 
+    # A version string for the build to report. If not set it will default to the version in package.json. This will only work if actions/checkout@v2 is used first.
+    appVersion: # optional
+    # The release stage of the build. The default is `production`.
+    releaseStage: # optional, default is production
+    # The source control provider. The default is `github`.
+    sourceControlProvider: # optional, default is github
+    # The source control repository. The default is the repository running the Github Action.
+    sourceControlRepository: # optional
+    # The source control revision. The default is the SHA for the running Github Action.
+    sourceControlRevision: # optional
+    # If true then CI will fail if this action fails.
+    failCiIfError: # optional
+    - name: Algorithmia build-wait
+  # You may pin to the exact commit or the version.
+  # uses: algorithmiaio/build-wait-action@b9a3dddd00cda265df65e84a71a4cb32272db270
+  uses: algorithmiaio/build-wait-action@v0.1.0-rc6
+  with:
+    # your Algorithmia API key
+    mgmt_api_key: 
+    # The API address for the Algorithmia Cluster you wish to connect to
+    api_address: # optional, default is https://api.algorithmia.com
+    # The name of the Algorithm you want to test
+    algorithm_name: 
+    - name: mkdocs-build-action
+  # You may pin to the exact commit or the version.
+  # uses: jnanadarshan/mkdocs-build-action@5e3511c75961f434460abf7b7c92343571a50e93
+  uses: jnanadarshan/mkdocs-build-action@v0.24
+  - name: Typescript (tsc) Build/Push
+  # You may pin to the exact commit or the version.
+  # uses: FuLagann/tsc-build-push@36d793b68b1fb1b9342eedb3d16359355175c364
+  uses: FuLagann/tsc-build-push@v1
+  with:
+    # The name of a contributor of the repository, used for pushing to git.
+    user-name: 
+    # The email of a contributor of the repository, used for pushing to git.
+    user-email: 
+    # The commit message that will appear when a build has completed.
+    message: # default is Automatically built unbuilt typescript
+    # The list of directories to build the typescripts from, if omitted then it will use the base project directory. The list is seperated by comma that's not found within quotations.
+    directories: # optional
+    - name: Build images with Packer
+  # You may pin to the exact commit or the version.
+  # uses: santisaez/packer-action@308a2e55da239b388947beb4f62f1451422e5b3f
+  uses: santisaez/packer-action@v1
+  with:
+    # Run only the specified Virtual-Machine builders
+    only: # optional
+    # Optional command arguments to be provided when calling Packer
+    options: # optional
+    # The secret will be written to /tmp/packer-secret, see Providing Secrets
+    secret: # optional
+    # Source file that defines how machine images are built
+    template: # default is default.json
+    - name: ReVIEW build artifact action
+  # You may pin to the exact commit or the version.
+  # uses: TechBooster/ReVIEW-build-artifact-action@300f8bf7341f16465165b63fd2f8ff2411aa8678
+  uses: TechBooster/ReVIEW-build-artifact-action@0.9.0
+  with:
+    # directory of the build target. If you use Review-template, you don't need to change it.
+    target_dir: # optional, default is ./
+    # Re:VIEW's build configuration file name (don't include directory path)
+    config_file: # optional, default is config.yml
+    # Output file format. Please choose from PDF, EPUB, HTML.
+    format: # optional, default is PDF
+    - name: Build Debian package: Buster
+  # You may pin to the exact commit or the version.
+  # uses: nylas/build-dpkg-buster@30d4ef945e228f9865173559657a9d836c00ef29
+  uses: nylas/build-dpkg-buster@v1
+  - name: Tangy Mkdocs Build Action
+  # You may pin to the exact commit or the version.
+  # uses: Tangerine-Community/tangy-mkdocs-build-action@64a7dac133c9d332b2bf6a96ba25592361eafb72
+  uses: Tangerine-Community/tangy-mkdocs-build-action@v1
+  - name: build asciidoctor action
+  # You may pin to the exact commit or the version.
+  # uses: tonynv/asciidoctor-action@755dc03a42aee715c3705fc31d2ca106b7ee90fd
+  uses: tonynv/asciidoctor-action@v2
+  with:
+    # asciidoctor 
+    program: # default is asciidoctor -D docs --backend=html5 -o index.html -a toc2 ddocs/index.adoc
+    - name: Octopus Deploy Build Information
+  # You may pin to the exact commit or the version.
+  # uses: xo-energy/action-octopus-build-information@51ca5849e3d48b72134ca70e237980619e456c08
+  uses: xo-energy/action-octopus-build-information@v1.1.0
+  with:
+    # GitHub personal access token
+    github_token: # default is ${{ github.token }}
+    # Authentication key for the Octopus Deploy API
+    octopus_api_key: # optional
+    # URL of the Octopus Deploy server
+    octopus_server: # optional
+    # Name of the Octopus Deploy environment
+    octopus_environment: # optional
+    # Name of the Octopus Deploy project
+    octopus_project: # optional
+    # Name of the Octopus Deploy space
+    octopus_space: # optional
+    # Path to the output directory
+    output_path: # optional
+    # Action to take when build information would be overwritten (FailIfExists, IgnoreIfExists, OverwriteExisting)
+    push_overwrite_mode: # default is FailIfExists
+    # Whitespace-separated list of package IDs for which to push build information to Octopus Deploy
+    push_package_ids: # optional
+    # Version of the packages to push
+    push_version: # optional
+    # Prefix for release version tags in the repository (e.g. 'v')
+    version_tag_prefix: # default is v
+    - name: Docker Build, Tag & Push
+  # You may pin to the exact commit or the version.
+  # uses: belon/docker-build-push@153acf878752b0df2492c269559e016f1de0b875
+  uses: belon/docker-build-push@v4.0
+  with:
+    # Name of the Docker image
+    image: 
+    # Tags override for Docker image
+    tags: # optional
+    # Target Docker registry
+    registry: 
+    # Location of Dockerfile, if not Dockerfile in root directory
+    dockerfile: # optional, default is Dockerfile
+    # Directory to run `docker build` from, if not project root
+    directory: # optional
+    # Docker build arguments in format KEY=VALUE,KEY=VALUE
+    buildArgs: # optional
+    # Docker registry username
+    username: # optional
+    # Docker registry password
+    password: # optional
+    # GitHub organization to push image to (if not current)
+    gitHubOrg: # optional
+    - name: Slack Notify Build
+  # You may pin to the exact commit or the version.
+  # uses: voxmedia/github-action-slack-notify-build@9c16fa61247911212502c81992c532b991dbb9d1
+  uses: voxmedia/github-action-slack-notify-build@v1.1.2
+  with:
+    # The Slack channel name. Required if no `channel_id` provided.
+    channel: # optional
+    # The Slack channel ID. Required if no `channel` provided.
+    channel_id: # optional
+    # The status to list in the update.
+    status: 
+    # The color of the Slack attachment.
+    color: # default is #cccccc
+    # The ID of the existing Slack message to update.
+    message_id: # optional
+    - name: Build Nakama Plugin
+  # You may pin to the exact commit or the version.
+  # uses: josephbmanley/build-nakama-plugin-action@c938d49c2abd9d3581edf19d1035f1b894ee84ee
+  uses: josephbmanley/build-nakama-plugin-action@v0.1.1
+  with:
+    # The release version of Nakama to build for. Defaults to `latest`.
+    nakamaVersion: # optional, default is latest
+    # The name of the preset found in `export_presets.cfg` you would like to build.
+    moduleDirectory: 
+    - name: build-deb-action
+  # You may pin to the exact commit or the version.
+  # uses: jiro4989/build-deb-action@ed23fc45f951b17be06086bf513885c878e5483c
+  uses: jiro4989/build-deb-action@v2
+  with:
+    # Package name of debian package.
+    package: 
+    # Directory of release files.
+    package_root: 
+    # Package maintainer name.
+    maintainer: 
+    # Package version.
+    version: 
+    # Package dependencies.
+    depends: # optional, default is none
+    # Package architecture.
+    arch: # optional, default is amd64
+    # Package description.
+    desc: # optional, default is no description
+    - name: Build Dataflow flex template.
+  # You may pin to the exact commit or the version.
+  # uses: JohanWork/action-dataflow-template@f8eeee5192e601197d0a063296c8c69287361d61
+  uses: JohanWork/action-dataflow-template@0.1
+  with:
+    # Should github action also trigger the pipeline
+    VERSION_GITHUB_SHA: # optional
+    # The path to the decoded google credentials
+    GOOGLE_APPLICATION_CREDENTIALS: 
+    # The image tag for the docker image on gcloud container registry.
+    IMAGE_TAG: 
+    # The path to the docker image which will contain the dataflow job.
+    DOCKERIMAGE_PATH: 
+    # The bucket and the path where the built.
+    TEMPLATE_PATH: 
+    # The metadata file path.
+    METADATA_PATH: 
+    # The GCP project
+    GCP_PROJECT: 
+    - name: build-rpm-action
+  # You may pin to the exact commit or the version.
+  # uses: jiro4989/build-rpm-action@cbf614c00042a6a03a92358b8f362d3947f691d9
+  uses: jiro4989/build-rpm-action@v1
+  with:
+    # Package summary.
+    summary: 
+    # Package name of rpm package.
+    package: 
+    # Directory of release files.
+    package_root: 
+    # Package maintainer name.
+    maintainer: 
+    # Package vendor.
+    vendor: # optional, default is 
+    # Package version.
+    version: 
+    # Package architecture.
+    arch: # optional, default is x86_64
+    # Package description.
+    desc: # optional, default is 
+    # Package LICENSE.
+    license: # optional, default is MIT
+    - name: go-cross-build
+  # You may pin to the exact commit or the version.
+  # uses: thatisuday/go-cross-build@542468fed9c6be3220a6cead66abff3943e41a5d
+  uses: thatisuday/go-cross-build@v1.1.0
+  with:
+    # Comma-separated list of "<kernel>/<arch>" combinations.
+    platforms: # optional, default is linux/386,linux/amd64
+    # Package (directory) in the module to build. By default, builds the module directory.
+    package: # optional, default is 
+    # Compress each build file inside a ".tar.gz" archive.
+    compress: # optional, default is false
+    # Binary executable filename and filenames prefix for the build files.
+    name: # optional, default is program
+    # Destination directory inside workspace to output build-artifacts.
+    dest: # optional, default is build
+    # Flags to pass to the Go linker.
+    ldflags: # optional, default is 
+    - name: latex-build-langja
+  # You may pin to the exact commit or the version.
+  # uses: 3rdJCG/latex-build-langja@630d927980bd70335d26d4ea1790d2e9c0dd11d9
+  uses: 3rdJCG/latex-build-langja@0.1.0
+  with:
+    # The root LaTeX file to be compiled
+    root_file: 
+    # The working directory for the latex compiler to be invoked
+    working_directory: # optional
+    # LaTeX engine to be used
+    compiler: # optional, default is latexmk
+    # Extra arguments to be passed to the latex compiler
+    args: # optional
+    # Install extra packages by tlmgr
+    extra-tex-package: # optional
+    - name: Build n Push
+  # You may pin to the exact commit or the version.
+  # uses: Leukocyte-Lab/build-n-push@6c8e617ec32a2fc0384f07d4f179f4327c26abce
+  uses: Leukocyte-Lab/build-n-push@v1.0.2
+  with:
+    # Private SSH key to register in the SSH Agent
+    ssh_private_key: # optional
+    # Username used to log in to a Docker registry.
+    username: 
+    # Password or personal access token used to log in to a Docker registry.
+    password: 
+    # Server address of Docker registry. If not set then will default to Docker Hub
+    registry: # optional
+    # Docker repository to tag the image with
+    repository: 
+    # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+    tags: # optional
+    # Path to the build context
+    path: # optional, default is .
+    # Path to the Dockerfile (Default is '{path}/Dockerfile')
+    dockerfile: # optional
+    # Enable SSH to access private data in builds
+    ssh: # optional
+    # Whether to push the image
+    push: # optional, default is true
+    - name: GitHub Jekyll Build Action
+  # You may pin to the exact commit or the version.
+  # uses: iranzo/gh-pages-jekyll-action@9448a4b29c5d4aa06ac350157b49db0e9f7f1338
+  uses: iranzo/gh-pages-jekyll-action@1.0.0
+  with:
+    # override the default `gh-pages` deployment branch
+    GH_PAGES_BRANCH: # optional, default is gh-pages
+    # override the default `./` folder for sources for website
+    SOURCE_FOLDER: # optional, default is ./
+    - name: espressif idf build
+  # You may pin to the exact commit or the version.
+  # uses: sebastianPsm/esp-idf-ci-action@0d3a6383c061c36cb4ce9ac05d3222500702fe6b
+  uses: sebastianPsm/esp-idf-ci-action@1
+  - name: GitHub Run&Build Action
+  # You may pin to the exact commit or the version.
+  # uses: iranzo/gh-action-runpublish@694f10c00b1fae3385b4258a7f46348d5079b214
+  uses: iranzo/gh-action-runpublish@0.0.4
+  with:
+    # override the default `gh-pages` deployment branch
+    GH_PAGES_BRANCH: # optional, default is gh-pages
+    # override the default `content` folder for sources for website
+    SOURCE_FOLDER: # optional, default is content
+    # Set to any value to stop job before pushing to GH-Pages
+    DONOTPUBLISH: # optional, default is 
+    - name: Build AUR Package
+  # You may pin to the exact commit or the version.
+  # uses: DuckSoft/build-aur-action@2fcaaa788b026807aa029172d493bdc125b1b1ac
+  uses: DuckSoft/build-aur-action@v1.1
+  with:
+    # AUR repository name to build
+    repo-name: # default is qv2ray-dev-git
+    - name: Packer qemu build
+  # You may pin to the exact commit or the version.
+  # uses: enr0s/packer-qemu-action@6f6841faa54c874bccfdfa4a6410b47b0acb69e8
+  uses: enr0s/packer-qemu-action@v0.2
+  with:
+    # Packer template file to use for packer build
+    templateFile: # optional, default is packer-template.json
+    # Directory where the packer template is located
+    workingDir: # optional, default is .
+    - name: Whiley Build Action
+  # You may pin to the exact commit or the version.
+  # uses: Whiley/WhileyBuildAction@bfa5f133762401f8bf1e8826cedefcaf324a3d3b
+  uses: Whiley/WhileyBuildAction@v1
+  with:
+    # WhileyDevelopmentKit version to use
+    version: # optional, default is latest
+    # Flag to enable Whiley QuickCheck
+    checking: # optional
+    - name: Build Jenkins job
+  # You may pin to the exact commit or the version.
+  # uses: GoldenspearLLC/build-jenkins-job@ba59c17c14a8883af2d7f9a7c1153c1284f7c1c6
+  uses: GoldenspearLLC/build-jenkins-job@1.0.0
+  with:
+    # jenkins server url
+    jenkins-url: 
+    # token to access jenkins server
+    jenkins-token: 
+    # user name
+    user: 
+    # job/folder_name/job/job_name
+    job-path: 
+    # params to run the job. JSON string. i.e '{'param1': 'value1', 'param2': 'value2'}' 
+    job-params: # optional
+    - name: Jekyll 4 Build
+  # You may pin to the exact commit or the version.
+  # uses: nan-wang/jekyll4-deploy-gh-pages@6313a761f8d723ec4aace430548330e2f97ab179
+  uses: nan-wang/jekyll4-deploy-gh-pages@0.0.1
+  - name: Docker Build then Push
+  # You may pin to the exact commit or the version.
+  # uses: tegarimansyah/docker_build_push@aededaf94cd7bb35c76783aa77b586065e571036
+  uses: tegarimansyah/docker_build_push@0.1.0
+  - name: Unity Build Action
+  # You may pin to the exact commit or the version.
+  # uses: yukiarrr/unity-build-action@92522bf02883fc225c86ff0c522c1c8051e83c1e
+  uses: yukiarrr/unity-build-action@v0.6.1
+  with:
+    # For example, 2018.4.16f1
+    unity-version: 
+    # Unity username
+    unity-username: 
+    # Unity password
+    unity-password: 
+    # Unity serial
+    unity-serial: 
+    # Choose Android, iOS, Mac, Windows, or WebGL
+    build-target: 
+    # Unity project path
+    project-path: # optional, default is .
+    # Use by -executeMethod
+    execute-method: # optional, default is UnityBuild.BatchBuild.Build
+    # Output path of default execute-method
+    output-path: # optional, default is Output
+    # Build command args
+    command-args: # optional
+    - name: Cached Docker Build
+  # You may pin to the exact commit or the version.
+  # uses: mattes/cached-docker-build-action@7709f1bd9ad225d52b6ff1e824f6bbe7f40dcfb6
+  uses: mattes/cached-docker-build-action@v1.0.1
+  with:
+    # docker build args
+    args: 
+    # Cache key
+    cache_key: 
+    - name: chimpwizards-npm-build
+  # You may pin to the exact commit or the version.
+  # uses: chimpwizards-pipeline/npm-build@fad8b0d15e902bd8ed2cb931b3be4bf34b70d3fd
+  uses: chimpwizards-pipeline/npm-build@v1.0.7
+  - name: Trigger binder build
+  # You may pin to the exact commit or the version.
+  # uses: s-weigand/trigger-mybinder-build@507c988166a75bf66a6a2109cf054c67151622e8
+  uses: s-weigand/trigger-mybinder-build@v1.0.4
+  with:
+    # Repository which should be build
+    target-repo: 
+    # gh|gist|gl|git|zenodo|figshare Name of the service that hosts the repo. Default: 'gh'
+    service-name: # optional, default is gh
+    # Name of the branch, tag or commit which should be build. Default: 'master'
+    target-state: # optional, default is master
+    # Whether or not to use the default mybinder.org build servers. If false and additional-build-server is not specified, this will throw an error. Default: true
+    use-default-build-servers: # optional, default is true
+    # Newline separated list of urls, which point do binder build servers base url. Default: ''
+    additional-build-servers: # optional, default is 
+    # Weather to print debug information or not. Default: false
+    debug: # optional
+    
